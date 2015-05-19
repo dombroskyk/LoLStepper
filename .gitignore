@@ -7,3 +7,6 @@ npm-debug.log
 #MONGO DIRECTORY#
 cache_db/*
 !cache_db/.gitkeep
+
+#GENERATED ASSETS#
+public/assets
