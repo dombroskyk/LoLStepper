@@ -10,11 +10,11 @@ router.get('/about', function(req, res) {
 });
 
 router.get('/matches/:summonerName', function(req, res) {
-    res.render('matches', { summonerName: req.param('summonerName') });
+    res.render('matches', { summonerName: req.params('summonerName') });
 });
 
 router.get('/match/:matchId', function(req, res) {
-    res.render('match', { matchId: req.param('matchId') });
+    res.render('match', { matchId: req.params('matchId') });
 });
 
 module.exports = router;
