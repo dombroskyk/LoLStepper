@@ -1,0 +1,15 @@
+{
+  "name": "lolstepper",
+  "version": "1.0.0",
+  "description": "League of Legends interactive timeline",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kowzrule/LoLStepper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kowzrule/LoLStepper/issues"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
