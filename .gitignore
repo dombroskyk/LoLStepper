@@ -3,3 +3,7 @@ node_modules
 
 #NPM LOGS#
 npm-debug.log
+
+#MONGO DIRECTORY#
+cache_db/*
+!cache_db/.gitkeep
