@@ -6,7 +6,7 @@ npm-debug.log
 
 #MONGO DIRECTORY#
 cache_db/*
-!cache_db/.gitkeep
+!cache_db/mongodb.conf
 
 #GENERATED ASSETS#
 public/assets
