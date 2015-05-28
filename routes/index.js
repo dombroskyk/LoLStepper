@@ -10,11 +10,13 @@ router.get('/about', function(req, res) {
 });
 
 router.get('/matches/:summonerName', function(req, res) {
-    res.render('matches', { summonerName: req.params('summonerName') });
+	//TODO: require('parseMatchHistory'); future external js file to parse match history of a summoner name
+    res.render('matches', { summonerName: req.params('summonerName'), matchHistory: null });
 });
 
 router.get('/match/:matchId', function(req, res) {
-    res.render('match', { matchId: req.params('matchId') });
+	//TODO: require('parseMatch'); future external js file to parse a single match
+    res.render('match', { matchId: req.params('matchId'), match: null });
 });
 
 module.exports = router;
