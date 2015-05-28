@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+//var parseMatchHistory = require('../scripts/parseMatchHistory');
+//var parseMatch = require('../scripts/parseMatch');
 
 router.get('/', function(req, res) {
     res.render('splash');
