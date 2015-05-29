@@ -10,3 +10,6 @@ cache_db/*
 
 #GENERATED ASSETS#
 public/assets
+
+#PERSONAL CONFIG FILE#
+config.js

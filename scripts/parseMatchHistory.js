@@ -1,14 +1,11 @@
 var http = require('http');
-var API_HOST = "na.api.pvp.net";
-var SUMMONER_PATH = "/api/lol/na/v1.4/summoner/by-name/";
-var MH_PATH = "/api/lol/na/v2.2/matchhistory/";
-var API_KEY = "";
+var config = require('../config');
 
 function parseMatchHistory( summonerName ){
 	var summonerId = 22101250;
 	var summonerNameReqOptions = {
-		host: API_HOST,
-		path: SUMMONER_PATH + summonerName + "?api_key=" + API_KEY
+		host: config.API_HOST,
+		path: config.SUMMONER_PATH + summonerName + "?api_key=" + config.API_KEY
 	}
 	http.get( summonerNameReqOptions, function(res){
 		//res.setEncoding("utf8"); i dont think the encoding is utf8
@@ -19,8 +16,8 @@ function parseMatchHistory( summonerName ){
 
 	var matchHistory = {};
 	var matchHistoryReqOptions = {
-		host: API_HOST,
-		path: MH_PATH + summonerId + "?api_key=" + API_KEY;
+		host: config.API_HOST,
+		path: config.MH_PATH + summonerId + "?api_key=" + config.API_KEY;
 	}
 	http.get( matchHistoryReqOptions, function(res){
 		//res.setEncoding("utf8");

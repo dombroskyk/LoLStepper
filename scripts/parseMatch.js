@@ -1,7 +1,5 @@
 var http = require('http');
-var API_HOST = "na.api.pvp.net";
-var MATCH_PATH = "/api/lol/na/v2.2/match/";
-var API_KEY = "";
+var config = require('../config');
 
 function parseMatch( matchId ){
 	//check if match is already in Mongo
@@ -10,8 +8,8 @@ function parseMatch( matchId ){
 	
 	var match = {};
 	var matchReqOptions = {
-		host: API_HOST,
-		path: MATCH_PATH + matchId + "?includeTimeline=true&api_key=" + API_KEY
+		host: config.API_HOST,
+		path: config.MATCH_PATH + matchId + "?includeTimeline=true&api_key=" + config.API_KEY
 	}
 	http.get( matchReqOptions, function(res){
 		//res.setEncoding("utf8"); i dont think the encoding is utf8
