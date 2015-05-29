@@ -1,0 +1,79 @@
+body {
+    font-family: $pageFontFamily;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: $headerTotalHeight;
+    border-bottom: 1px solid $sectionBorderColor;
+    background: white;
+    #headerInnerWrapper {
+        height: $headerTotalHeight;
+        width: $pageContentWidth;
+        margin: 0 auto;
+        overflow: hidden;
+        h1 {
+            height: $headerInnerHeight;
+            font-size: $headerFontSize;
+            display: inline-block;
+            float: left;
+            margin: 0;
+            padding: $headerVerticalPadding 15px $headerVerticalPadding 0;
+            border-right: 1px solid $sectionBorderColor;
+            a {
+                display: inline-block;
+                color: black;
+                text-decoration: none;
+            }
+        }
+        nav {
+            display: inline-block;
+            float: left;
+            height: $headerTotalHeight;
+            ul {
+                display: inline-block;
+                height: $headerTotalHeight;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                overflow: hidden;
+                li {
+                    float: left;
+                    height: $headerTotalHeight;
+                    border-right: 1px solid $sectionBorderColor;
+                    a {
+                        display: inline-block;
+                        height: $headerInnerHeight;
+                        line-height: $headerInnerHeight;
+                        padding: $headerVerticalPadding $headerHorizontalPadding;
+                        font-size: $headerNavFontSize;
+                        color: black;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#content {
+    margin: 0 auto;
+    padding: $contentPadding;
+    width: $pageContentWidth;
+    #searchContainer {
+        width: auto;
+        float: right;
+    }
+    #pageTitle {
+        margin-top: $pageTitleTopMargin;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: $footerTopPadding 0 $footerBottomPadding 0;
+    border-top: 1px solid $sectionBorderColor;
+    color: $footerTextColor;
+    font-size: 80%;
+}

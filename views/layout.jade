@@ -1,7 +1,22 @@
 doctype html
 html
     head
-        title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
+ 
+        title: block pageTitle
+        link(rel='stylesheet', href='/assets/css/main.css')
+
     body
-        block content
+
+        header
+            div(id='headerInnerWrapper')
+                h1: a(href='/') LoLStepper
+                nav: ul
+                   li: a(href='/about') About
+
+        section(id='content')
+            div(id='searchContainer'): input(type='text', id='search', placeholder='Search for a summoner...')
+            h1(id='pageTitle'): block pageTitle
+            block content
+
+        footer
+            | &copy; 2015 LoLStepper

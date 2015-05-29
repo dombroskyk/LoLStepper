@@ -1,0 +1,36 @@
+/////////////////
+// Text Styles //
+////////////////
+
+$pageFontFamily: Helvetica, sans-serif;
+
+$headerFontSize: 20px;
+$headerNavFontSize: 15px;
+
+$footerTextColor: #999999;
+
+
+//////////////////
+// Layout Sizes //
+//////////////////
+
+$pageContentWidth: 980px;
+
+$headerVerticalPadding: 5px;
+$headerHorizontalPadding: 8px;
+$headerTotalHeight: $headerFontSize + ($headerVerticalPadding * 2);
+$headerInnerHeight: $headerFontSize;
+
+$contentPadding: 10px;
+
+$footerTopPadding: 20px;
+$footerBottomPadding: 10px;
+
+$pageTitleTopMargin: 10px;
+
+
+////////////
+// Colors //
+////////////
+
+$sectionBorderColor: #CCCCCC;
