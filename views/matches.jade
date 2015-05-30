@@ -5,3 +5,7 @@ block pageTitle
 
 block content
     p #{locals.summonerName}'s match history
+    if locals.matchHistory.length
+        each match in locals.matchHistory
+            block matchInfo
+                p: a(href='/match/#{match.matchId}') #{match.matchId}

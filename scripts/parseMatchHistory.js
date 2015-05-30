@@ -18,7 +18,7 @@ function parseMatchHistory( summonerName, renderCallback ) {
 		res.on('end', function() {
 			var matchHistoryReqOptions = {
 				host: config.RIOT_API.API_HOST,
-				path: config.RIOT_API.MH_PATH + summonerId + '?api_key=' + config.RIOT_API.API_KEY
+				path: config.RIOT_API.MH_PATH + summonerId + '?beginIndex=0&api_key=' + config.RIOT_API.API_KEY
 			}
 			var matchesData = "";
 			var matchesJSON;
@@ -32,7 +32,7 @@ function parseMatchHistory( summonerName, renderCallback ) {
 					matchesJSON = JSON.parse(matchesData);
 					//pull out the information that we want
 					var reducedJSON = [];
-					for(var i=0; i < matchesJSON.matches.length; i++){
+					for(var i = 0; i < matchesJSON.matches.length; i++){
 						var curr = matchesJSON.matches[i];
 						var newJSON = {
 							mapId: curr.mapId,
@@ -66,7 +66,6 @@ function parseMatchHistory( summonerName, renderCallback ) {
 
 						reducedJSON.push(newJSON);
 					}
-
 					renderCallback(null, reducedJSON);
 				});
 			}).on('error', function(e) {
