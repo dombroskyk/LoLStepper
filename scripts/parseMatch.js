@@ -8,8 +8,8 @@ function parseMatch( matchId ){
 	
 	var match = {};
 	var matchReqOptions = {
-		host: config.API_HOST,
-		path: config.MATCH_PATH + matchId + "?includeTimeline=true&api_key=" + config.API_KEY
+		host: config.RIOT_API.API_HOST,
+		path: config.RIOT_API.MATCH_PATH + matchId + "?includeTimeline=true&api_key=" + config.RIOT_API.API_KEY
 	}
 	http.get( matchReqOptions, function(res){
 		//res.setEncoding("utf8"); i dont think the encoding is utf8
