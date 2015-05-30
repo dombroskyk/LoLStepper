@@ -2,27 +2,39 @@ var https = require('https');
 var config = require('../config');
 
 function parseMatchHistory( summonerName, renderCallback ) {
-	var summonerId;
-	var summonerNameReqOptions = {
+	var summonerReqOptions = {
 		host: config.RIOT_API.API_HOST,
 		path: config.RIOT_API.SUMMONER_PATH + encodeURIComponent(summonerName) + '?api_key=' + config.RIOT_API.API_KEY
 	}
-
-	https.get( summonerNameReqOptions, function(res) {
-		//gather data in case sent in multiple parts, make implementation specific variable names
-		res.on('data', function(chunk) {
-			//parse JSON, get summoner id
-			chunk = JSON.parse(chunk);
-			summonerId = chunk[summonerName.toLowerCase().replace(/ /g,'')].id;
+	var summonerData = "";
+	var summonerId;
+	https.get(summonerReqOptions, function(summonerRes) {
+		//TODO: handle error codes
+		if(summonerRes.statusCode == 404){
+			renderCallback(404, {});
+			return;
+		}
+		summonerRes.setEncoding('utf8');
+		summonerRes.on('data', function(summonerChunk) {
+			//gather data from response parts
+			summonerData += summonerChunk;
 		});
-		res.on('end', function() {
+		summonerRes.on('end', function() {
+			//parse JSON, get summoner id
+			if(summonerRes != "" ){
+				summonerData = JSON.parse(summonerData);
+			}else{
+				renderCallback(null, {});
+			}
+			summonerId = summonerData[summonerName.toLowerCase().replace(/ /g,'')].id;
+
 			var matchHistoryReqOptions = {
 				host: config.RIOT_API.API_HOST,
 				path: config.RIOT_API.MH_PATH + summonerId + '?beginIndex=0&api_key=' + config.RIOT_API.API_KEY
 			}
 			var matchesData = "";
 			var matchesJSON;
-			https.get( matchHistoryReqOptions, function(mhRes) {
+			https.get(matchHistoryReqOptions, function(mhRes) {
 				//parse match history json
 				mhRes.setEncoding('utf8');
 				mhRes.on('data', function(mhChunk) {
