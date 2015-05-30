@@ -13,7 +13,6 @@ router.get('/matches/:summonerName', function(req, res) {
 	var parseMatchHistory = require('../scripts/parseMatchHistory');
 	parseMatchHistory(req.params['summonerName'], matchHistoryRender );
 	function matchHistoryRender( err, matches ){
-		//console.log( matches );
     	res.render('matches', { summonerName: req.params['summonerName'], matchHistory: matches });
     }
 });
