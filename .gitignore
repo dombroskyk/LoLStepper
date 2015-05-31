@@ -9,7 +9,8 @@ cache_db/*
 !cache_db/mongodb.conf
 
 #GENERATED ASSETS#
-public/assets
+public/assets/*
+!public/assets/fonts
 
 #PERSONAL CONFIG FILE#
 config.js
