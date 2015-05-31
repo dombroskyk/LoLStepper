@@ -16,6 +16,7 @@ html
         section(id='content')
             form(id='searchContainer', action='/matches', method='get')
                 input(type='text', id='search', name='summonerName', placeholder='Search for a summoner...')
+                button(type='submit', id='searchIcon', class='fa fa-search')
             h1(id='pageTitle'): block pageTitle
             block content
 

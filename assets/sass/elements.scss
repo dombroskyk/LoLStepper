@@ -1,10 +1,10 @@
 input {
     &[type="text"] {
         box-sizing: border-box;
-        height: 30px;
-        width: 200px;
+        height: $inputHeight;
+        width: $inputWidth;
         font-size: 12px;
-        padding: 5px 10px;
+        padding: $inputPaddingTopBottom $inputPaddingLeftRight;
         border-radius: 5px;
         border: 1px solid #CCCCCC;
         transition: border 0.1s;
