@@ -9,15 +9,16 @@ router.get('/about', function(req, res) {
     res.render('about');
 });
 
-router.get('/matches/:summonerName', function(req, res) {
-	var parseMatchHistory = require('../scripts/parseMatchHistory');
-	parseMatchHistory(req.params['summonerName'], matchHistoryRender);
+router.get('/matches/?', function(req, res) {
+	var parseMatchHistory = require('../scripts/parseMatchHistory'),
+        summonerName = req.query['summonerName'];
+	parseMatchHistory(summonerName, matchHistoryRender);
 	function matchHistoryRender(err, matches) {
 		//TODO: handle error codes
 		if(!err){
-    		res.render('matches', { summonerName: req.params['summonerName'], matchHistory: matches });
+    		res.render('matches', { summonerName: summonerName, matchHistory: matches });
     	}else{
-    		res.render('matches', { summonerName: req.params['summonerName'], matchHistory: {} });
+    		res.render('matches', { summonerName: summonerName, matchHistory: {} });
     	}
     }
 });

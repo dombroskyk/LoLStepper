@@ -14,7 +14,8 @@ html
                    li: a(href='/about') About
 
         section(id='content')
-            div(id='searchContainer'): input(type='text', id='search', placeholder='Search for a summoner...')
+            form(id='searchContainer', action='/matches', method='get')
+                input(type='text', id='search', name='summonerName', placeholder='Search for a summoner...')
             h1(id='pageTitle'): block pageTitle
             block content
 
