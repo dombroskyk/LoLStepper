@@ -9,16 +9,16 @@ function parseMatch( matchId, renderCallback ) {
 	var match = {};
 	var matchReqOptions = {
 		host: config.RIOT_API.API_HOST,
-		path: config.RIOT_API.MATCH_PATH + matchId + "?includeTimeline=true&api_key=" + config.RIOT_API.API_KEY
+		path: config.RIOT_API.MATCH_PATH + matchId + '?includeTimeline=true&api_key=' + config.RIOT_API.API_KEY
 	}
 	https.get(matchReqOptions, function(res) {
 		//res.setEncoding("utf8"); i dont think the encoding is utf8
-		res.on("data", function(chunk) {
+		res.on('data', function(chunk) {
 			//parse JSON, store match
 		});
-		res.on("end", function() {
+		res.on('end', function() {
 			//parse match for desired information
-			renderCallback(match);
+			renderCallback(null, match);
 		});
 	});
 }

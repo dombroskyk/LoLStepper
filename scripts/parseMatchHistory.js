@@ -1,7 +1,7 @@
 var https = require('https');
 var config = require('../config');
 
-function parseMatchHistory( summonerName, renderCallback ) {
+function parseMatchHistory(summonerName, renderCallback) {
 	var summonerReqOptions = {
 		host: config.RIOT_API.API_HOST,
 		path: config.RIOT_API.SUMMONER_PATH + encodeURIComponent(summonerName) + '?api_key=' + config.RIOT_API.API_KEY
@@ -9,9 +9,9 @@ function parseMatchHistory( summonerName, renderCallback ) {
 	var summonerData = "";
 	var summonerId;
 	https.get(summonerReqOptions, function(summonerRes) {
-		//TODO: handle error codes
-		if(summonerRes.statusCode == 404){
-			renderCallback(404, {});
+		//TODO: handle error codes, custom error pages?
+		if(summonerRes.statusCode != 200){
+			renderCallback(summonerRes.statusCode, {});
 			return;
 		}
 		summonerRes.setEncoding('utf8');
@@ -21,7 +21,7 @@ function parseMatchHistory( summonerName, renderCallback ) {
 		});
 		summonerRes.on('end', function() {
 			//parse JSON, get summoner id
-			if(summonerRes != "" ){
+			if(summonerRes != ""){
 				summonerData = JSON.parse(summonerData);
 			}else{
 				renderCallback(null, {});
@@ -35,6 +35,10 @@ function parseMatchHistory( summonerName, renderCallback ) {
 			var matchesData = "";
 			var matchesJSON;
 			https.get(matchHistoryReqOptions, function(mhRes) {
+				if(mhRes.statusCode != 200){
+					renderCallback(mhRes.statusCode, {});
+					return;
+				}
 				//parse match history json
 				mhRes.setEncoding('utf8');
 				mhRes.on('data', function(mhChunk) {
