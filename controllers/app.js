@@ -10,7 +10,7 @@ module.exports = {
 
     matchHistory: function (req, res) {
         var parseMatchHistory = require('../includes/parseMatchHistory'),
-            summonerName = req.query['summonerName'];
+            summonerName = req.query.summonerName;
         parseMatchHistory(summonerName, matchHistoryRender);
         function matchHistoryRender(err, matches) {
             //TODO: handle error codes
@@ -47,7 +47,7 @@ module.exports = {
 
     match: function (req, res) {
         var parseMatch = require('../includes/parseMatch'),
-            matchId = req.query['matchId'];
+            matchId = req.query.matchId;
         parseMatch(matchId, matchRender);
         function matchRender(err, matchInfo) {
             if(!err){
