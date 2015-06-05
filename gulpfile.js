@@ -14,7 +14,15 @@ gulp.task('sass:watch', function () {
 });
 
 gulp.task('jshint', function () {
-    return gulp.src(['app.js', 'routes/**/*.js', 'scripts/**/*.js', 'assets/**/*.js'])
+    var files = [
+        'gulpfile.js',
+        'app.js',
+        'routes.js',
+        'includes/**/*.js',
+        'controllers/**/*.js',
+        'assets/**/*.js'
+    ];
+    return gulp.src(files)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
