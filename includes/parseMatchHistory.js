@@ -5,8 +5,8 @@ function parseMatchHistory(summonerName, renderCallback) {
     var summonerReqOptions = {
         host: config.RIOT_API.API_HOST,
         path: config.RIOT_API.SUMMONER_PATH + encodeURIComponent(summonerName) + '?api_key=' + config.RIOT_API.API_KEY
-    }
-    var summonerData = "";
+    };
+    var summonerData = '';
     var summonerId;
     https.get(summonerReqOptions, function(summonerRes) {
         //TODO: handle error codes, custom error pages?
@@ -21,7 +21,7 @@ function parseMatchHistory(summonerName, renderCallback) {
         });
         summonerRes.on('end', function() {
             //parse JSON, get summoner id
-            if(summonerRes != ""){
+            if(summonerRes !== ''){
                 summonerData = JSON.parse(summonerData);
             }else{
                 renderCallback(null, {});
@@ -31,8 +31,8 @@ function parseMatchHistory(summonerName, renderCallback) {
             var matchHistoryReqOptions = {
                 host: config.RIOT_API.API_HOST,
                 path: config.RIOT_API.MH_PATH + summonerId + '?beginIndex=0&api_key=' + config.RIOT_API.API_KEY
-            }
-            var matchesData = "";
+            };
+            var matchesData = '';
             var matchesJSON;
             https.get(matchHistoryReqOptions, function(mhRes) {
                 if(mhRes.statusCode != 200){

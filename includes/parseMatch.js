@@ -25,7 +25,7 @@ function parseMatch(matchId, renderCallback) {
                     path: config.RIOT_API.MATCH_PATH + matchId + '?includeTimeline=true&api_key=' + config.RIOT_API.API_KEY
                 };
                 //fetch
-                var matchData = "";
+                var matchData = '';
                 var matchJson;
                 https.get(matchReqOptions, function(matchRes) {
                     matchRes.setEncoding('utf8');
@@ -39,7 +39,7 @@ function parseMatch(matchId, renderCallback) {
                         matchJson._id = matchJson.matchId;
                         collection.insert(matchJson, function(insertErr, record) {
                             if(insertErr){
-                                console.log("insert error: " + insertErr);
+                                console.log('insert error: ' + insertErr);
                             }
                             //render
                             renderCallback(null, matchJson);
