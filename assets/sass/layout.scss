@@ -6,8 +6,8 @@ body {
 
 header {
     height: $headerTotalHeight;
-    border-bottom: 1px solid $sectionBorderColor;
-    background: white;
+    border-bottom: 1px solid $headerBorderColor;
+    background: $lightBlue;
     #headerInnerWrapper {
         height: $headerTotalHeight;
         width: $pageContentWidth;
@@ -20,7 +20,7 @@ header {
             float: left;
             margin: 0;
             padding: $headerVerticalPadding 15px $headerVerticalPadding 0;
-            border-right: 1px solid $sectionBorderColor;
+            border-right: 1px solid $headerBorderColor;
             a {
                 display: inline-block;
                 color: black;
@@ -41,7 +41,7 @@ header {
                 li {
                     float: left;
                     height: $headerTotalHeight;
-                    border-right: 1px solid $sectionBorderColor;
+                    border-right: 1px solid $headerBorderColor;
                     a {
                         display: inline-block;
                         height: $headerInnerHeight;
@@ -50,6 +50,10 @@ header {
                         font-size: $headerNavFontSize;
                         color: black;
                         text-decoration: none;
+                        &:hover {
+                            background: $darkBlue;
+                            color: lighten($lightBlue, 15%);
+                        }
                     }
                 }
             }
@@ -69,6 +73,7 @@ header {
             padding-right: $inputPaddingLeftRight + 20px;
         }
         #searchIcon {
+            transition: color .2s;
             background: none;
             border: none;
             height: $inputHeight;
@@ -77,8 +82,9 @@ header {
             padding-bottom: 0;
             margin-left: -30px;
             cursor: pointer;
+            color: $lightBlue;
             &:hover {
-                color: #0000EE;
+                color: $darkBlue;
             }
         }
     }
@@ -90,7 +96,7 @@ header {
 footer {
     text-align: center;
     padding: $footerTopPadding 0 $footerBottomPadding 0;
-    border-top: 1px solid $sectionBorderColor;
+    border-top: 1px solid $footerBorderColor;
     color: $footerTextColor;
     font-size: 80%;
 }

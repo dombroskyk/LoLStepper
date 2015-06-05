@@ -1,3 +1,13 @@
+a {
+    transition: color .2s, background .2s;
+    color: $lightBlue;
+    text-decoration: none;
+    &:hover {
+        color: $darkBlue;
+        text-decoration: underline;
+    }
+}
+
 input {
     &[type="text"] {
         box-sizing: border-box;
@@ -10,8 +20,8 @@ input {
         transition: border 0.1s;
         &:focus {
             outline: none;
-            border: 1px solid #66AFE9;
-            box-shadow: 0 0 2px #66AFE9;
+            border: 1px solid $lightBlue;
+            box-shadow: 0 0 2px $lightBlue;
         }
     }
 }
