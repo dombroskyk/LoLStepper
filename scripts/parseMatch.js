@@ -5,7 +5,7 @@ var mongoclient = require('mongodb').MongoClient;
 function parseMatch(matchId, renderCallback) {
     //check if match is already in Mongo
     //if yes, fetch
-    var mongoUrl = 'mongodb://localhost:27017/lolstepper';
+    var mongoUrl = config.MONGODB.MONGO_HOST + ':' + config.MONGODB.PORT + '/lolstepper';
     mongoclient.connect(mongoUrl, function(err, db) {
         if(err){
             console.log('error: ' + err);    

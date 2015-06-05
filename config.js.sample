@@ -5,5 +5,9 @@ module.exports = {
 		SUMMONER_PATH: '/api/lol/na/v1.4/summoner/by-name/', //api path to retrieve a summoner id
 		MH_PATH: '/api/lol/na/v2.2/matchhistory/', //api path to retrieve a match history
 		API_KEY: '' //personal riot api key
+	},
+	MONGODB: {
+		MONGO_HOST: 'mongodb://localhost',
+		MONGO_PORT: '27017'
 	}
 }
