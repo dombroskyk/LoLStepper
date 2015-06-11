@@ -1,0 +1,4 @@
+if locals.matchHistory.length
+    each match in locals.matchHistory
+        block matchInfo
+            p: a(href='/match?matchId=#{match.matchId}') #{match.matchId}
