@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     matchHistory: function (req, res) {
         var parseMatchHistory = require('../includes/parseMatchHistory'),

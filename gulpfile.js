@@ -23,7 +23,9 @@ gulp.task('jshint', function () {
         'assets/**/*.js'
     ];
     return gulp.src(files)
-        .pipe(jshint())
+        .pipe(jshint({
+            node: true
+        }))
         .pipe(jshint.reporter('default'));
 });
 
