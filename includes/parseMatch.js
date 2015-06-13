@@ -10,7 +10,7 @@ function parseMatch(matchId, renderCallback) {
     var mongoUrl = config.MONGODB.MONGO_HOST + ':' + config.MONGODB.PORT + '/lolstepper';
     mongoclient.connect(mongoUrl, function(err, db) {
         if(err){
-            console.log('error: ' + err);    
+            console.log('error: ' + err);
         }
         var collection = db.collection('matches');
         collection.findOne({_id: parseInt(matchId)}, function(findErr, doc) {
@@ -18,7 +18,7 @@ function parseMatch(matchId, renderCallback) {
                 console.log('find err: ' + findErr);
             }else if(doc){
                 //match found, render
-                renderCallback(null, doc); 
+                renderCallback(null, doc);
                 db.close();
             }else{
                 //no match cached, fetch, store, and render
@@ -37,7 +37,7 @@ function parseMatch(matchId, renderCallback) {
                     });
                     matchRes.on('end', function() {
                         //parse match for desired information
-                        matchJson = JSON.parse(matchData); 
+                        matchJson = JSON.parse(matchData);
                         matchJson._id = matchJson.matchId;
                         collection.insert(matchJson, function(insertErr, record) {
                             if(insertErr){
