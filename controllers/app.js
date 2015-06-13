@@ -48,13 +48,13 @@ module.exports = {
     },
 
     match: function (req, res) {
-        var parseMatch = require('../includes/parseMatch'),
+        var matchFetcher = require('../includes/matchFetcher'),
             matchId = req.query.matchId;
-        parseMatch(matchId, matchRender);
-        function matchRender(err, matchInfo) {
-            if(!err){
-                res.render('match', { matchId: matchId, match: matchInfo });
-            }
-        }
+        matchFetcher(matchId).then(function (match) {
+            res.render('match', { matchId: matchId, match: match });
+        }, function (err) {
+            console.log(err);
+            res.end();
+        });
     }
 };
