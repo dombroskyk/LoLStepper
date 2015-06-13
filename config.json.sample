@@ -1,0 +1,13 @@
+{
+	"RIOT_API": {
+		"API_HOST": "na.api.pvp.net",
+		"MATCH_PATH": "/api/lol/na/v2.2/match/",
+		"SUMMONER_PATH": "/api/lol/na/v1.4/summoner/by-name/",
+		"MH_PATH": "/api/lol/na/v2.2/matchhistory/",
+		"API_KEY": ""
+	},
+	"MONGODB": {
+		"MONGO_HOST": "mongodb://localhost",
+		"MONGO_PORT": "27017"
+	}
+}
