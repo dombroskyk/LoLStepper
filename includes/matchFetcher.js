@@ -60,9 +60,7 @@ module.exports = function (matchId) {
             } else { //no match cached, fetch and store
                 fetchMatch(matchId).then(function (match) {
                     match._id = match.matchId;
-                    console.log('inserting...');
                     collection.insert(match, function(insertErr, record) {
-                        console.log('inserted');
                         if (insertErr) {
                             matchPromise.reject(insertErr);
                         } else {
