@@ -100,7 +100,7 @@ function parseMatchHistory(summonerName, renderCallback) {
                                    otherPlayers.enemyTeam.push(currPlayer.championId);
                                }
                         }
-                        console.log(curr.stats.win);
+
                         var newJSON = {
                             otherPlayers: otherPlayers,
                             mapId: curr.mapId,
