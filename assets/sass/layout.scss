@@ -91,6 +91,73 @@ header {
     #pageTitle {
         margin-top: $pageTitleTopMargin;
     }
+    .pager {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .matches-container {
+        .match-container{
+            color: black;
+            min-height: calc(4em + 40px);
+            width: 100%;
+            .victory-sidebar, .defeat-sidebar {
+                width: 10px;
+                min-height: calc(4em + 40px);
+                float: left;
+            }
+            .victory-sidebar {
+                background: green;
+            }
+            .defeat-sidebar {
+                background: red;
+            }
+            .player-team-container {
+                width: calc(50% - 5px);
+                height: calc(4em + 40px);
+                background: $lightBlue;
+                display: inline-block;
+                vertical-align: top;
+                .player-stats-container {
+                    width: calc(100% - 10px);
+                    margin: 5px;
+                    text-align: center;
+                    .mh-kda {
+                        width: calc(100% / 3);
+                        display: inline-block;
+                        .blue-text {
+                            color: blue;
+                        }
+                        .red-text {
+                            color: red; 
+                        }
+                    }
+                    .mh-duration {
+                        width: calc(100% / 3);
+                        display: inline-block;
+                    }
+                    .mh-creation {
+                        width: calc(100% / 3);
+                        display: inline-block;
+                    }
+                }
+            }
+            .enemy-team-container {
+                width: calc(50% - 5px);
+                height: calc(4em + 40px);
+                background: $lightRed;
+                display: inline-block;
+            }
+            .player-champ-img {
+                display: inline-block;
+                vertical-align: top;
+                margin: 5px;
+            }
+            .nonplayer-champ-img {
+                margin: 5px;
+                vertical-align: top;
+            }
+        }
+    }
 }
 
 footer {

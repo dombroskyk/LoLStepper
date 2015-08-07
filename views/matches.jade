@@ -1,8 +1,7 @@
 extends layout
 
 block pageTitle
-    | Match History
+    | #{locals.summonerName}'s Match History
 
 block content
-    p #{locals.summonerName}'s match history
     include ./matchesData.jade

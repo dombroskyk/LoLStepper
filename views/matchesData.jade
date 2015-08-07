@@ -1,4 +1,30 @@
-if locals.matchHistory.length
+.matches-container
     each match in locals.matchHistory
-        block matchInfo
-            p: a(href='/match?matchId=#{match.matchId}') #{match.matchId}
+        a(href='/match?matchId=#{match.matchId}')
+            .match-container
+                if match.stats.win
+                    .victory-sidebar
+                else
+                    .defeat-sidebar
+                .player-team-container
+                    .player-team-imgs
+                        img(class='player-champ-img', src='/assets/img/Placeholder.jpg', width='64', height='64')
+                        each teamChamp in match.otherPlayers.playerTeam
+                            img(class='nonplayer-champ-img', src='/assets/img/Placeholder.jpg', width='48', height='48')
+                    .player-stats-container
+                        .mh-kda
+                            span.blue-text
+                                | #{match.stats.kills}
+                            | &nbsp;/&nbsp;
+                            span.red-text
+                                | #{match.stats.deaths}
+                            | &nbsp;/&nbsp;
+                            span.blue-text
+                                | #{match.stats.assists}
+                        .mh-duration
+                            | #{match.matchDuration}
+                        .mh-creation
+                            | #{match.matchCreation}
+                .enemy-team-container
+                    each teamChamp in match.otherPlayers.enemyTeam
+                        img(class='nonplayer-champ-img', src='/assets/img/Placeholder.jpg', width='48', height='48')

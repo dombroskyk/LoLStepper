@@ -10,9 +10,9 @@ var dbPromise = Q.defer();
 var mongoUrl = 'mongodb://' + config.MONGODB.MONGO_HOST + ':' + config.MONGODB.PORT + '/lolstepper';
 mongoClient.connect(mongoUrl, function (err, db) {
     if (err) {
-        dbPromise.reject(err)
+        dbPromise.reject(err);
     } else {
-        dbPromise.resolve(db)
+        dbPromise.resolve(db);
     }
 });
 
@@ -64,7 +64,7 @@ module.exports = function (matchId) {
                         if (insertErr) {
                             matchPromise.reject(insertErr);
                         } else {
-                            matchPromise.resolve(matchJson);
+                            matchPromise.resolve(match);
                         }
                     });
                 }, function (error) {
@@ -80,4 +80,4 @@ module.exports = function (matchId) {
         });
     });
     return matchPromise.promise;
-}
+};
