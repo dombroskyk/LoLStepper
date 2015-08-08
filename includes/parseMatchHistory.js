@@ -118,11 +118,11 @@ function parseMatchHistory(summonerName, renderCallback) {
                             },
                             stats: {
                                 win: curr.stats.win,
-                                largestMultiKill: curr.stats.largestMultiKill,
-                                kills: curr.stats.championsKilled,
-                                deaths: curr.stats.numDeaths,
-                                assists: curr.stats.assists,
-                                minionsKilled: curr.stats.minionsKilled,
+                                largestMultiKill: typeof curr.stats.largestMultiKill != "undefined" ? curr.stats.largestMultiKill : 0,
+                                kills: typeof curr.stats.championsKilled != "undefined" ? curr.stats.championsKilled : 0,
+                                deaths: typeof curr.stats.numDeaths != "undefined" ? curr.stats.numDeaths : 0,
+                                assists: typeof curr.stats.assists != "undefined" ? curr.stats.assists : 0,
+                                minionsKilled: typeof curr.stats.minionsKilled != "undefined" ? curr.stats.minionsKilled : 0,
                                 goldEarned: curr.stats.goldEarned
                             },
                             spell1Id: curr.spell1,
@@ -133,7 +133,7 @@ function parseMatchHistory(summonerName, renderCallback) {
                             matchType: curr.gameType,
                             matchMode: curr.gameMode,
                         };
-
+                        
                         parsedJSON.push(newJSON);
                     }
                     renderCallback(null, parsedJSON);
