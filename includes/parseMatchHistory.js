@@ -1,7 +1,8 @@
 'use strict';
 
-var https = require('https');
-var config = require('../config');
+var https = require('https'),
+    fs = require('fs'),
+    config = require('../config');
 
 function parseMatchHistory(summonerName, renderCallback) {
     var summonerReqOptions = {
@@ -139,13 +140,23 @@ function parseMatchHistory(summonerName, renderCallback) {
                     renderCallback(null, parsedJSON);
                 });
             }).on('error', function(e) {
-                //implement file logging
+                //leaving console log for development purposes
                 console.log('Problem with match history request: ' + e.message);
+                fs.appendFile('../error.log', 'MATCH HISTORY: ' + e.message, function(err){
+                    if(err){
+                        console.log('Error appending error to log file: ' + err.message);
+                    }
+                });
             });
         });
     }).on('error', function(e) {
-        //implement file logging
+        //leaving console log for development purposes
         console.log('Problem with summoner name request: ' + e.message);
+        fs.appendFile('../error.log', 'MATCH HISTORY: ' + e.message, function(err){
+            if(err){
+                console.log('Error appending error to log file: ' + err.message);
+            }
+        });
     });
 }
 
