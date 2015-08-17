@@ -2,7 +2,13 @@ extends layout
 
 //-temporary matchId display
 block pageTitle
-    | Match #{locals.matchId}
+    | Match Information
 
 block content
-    p Match information
+    #match-summary-container
+        #blue-team-summary
+            .team-summary-header
+                | DEFEAT
+        #red-team-summary
+            .team-summary-header
+                | VICTORY

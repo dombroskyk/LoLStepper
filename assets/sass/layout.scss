@@ -180,6 +180,29 @@ header {
             }
         }
     }
+    #match-summary-container {
+        width: 100%;
+        border: 1px solid black;
+        #blue-team-summary, #red-team-summary {
+            width: calc(50% - 10px);
+            height: calc(100% - 20px);
+            margin-top: 10px;
+            margin-bottom: 10px;
+            .team-summary-header {
+                
+            }
+        }
+        #blue-team-summary {
+            margin-left: 10px;
+            display: inline-block;
+            background: $lightBlue
+        }
+        #red-team-summary {
+            margin-right: 10px;
+            display: inline-block;
+            background: $lightRed;
+        }
+    }
 }
 
 footer {

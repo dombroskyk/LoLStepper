@@ -142,7 +142,7 @@ function parseMatchHistory(summonerName, renderCallback) {
             }).on('error', function(e) {
                 //leaving console log for development purposes
                 console.log('Problem with match history request: ' + e.message);
-                fs.appendFile('../error.log', 'MATCH HISTORY: ' + e.message, function(err){
+                fs.appendFile('../error.log', 'MATCH HISTORY: ' + e.message, function(err) {
                     if(err){
                         console.log('Error appending error to log file: ' + err.message);
                     }
@@ -152,7 +152,7 @@ function parseMatchHistory(summonerName, renderCallback) {
     }).on('error', function(e) {
         //leaving console log for development purposes
         console.log('Problem with summoner name request: ' + e.message);
-        fs.appendFile('../error.log', 'MATCH HISTORY: ' + e.message, function(err){
+        fs.appendFile('../error.log', 'MATCH HISTORY: ' + e.message, function(err) {
             if(err){
                 console.log('Error appending error to log file: ' + err.message);
             }
