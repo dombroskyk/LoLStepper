@@ -38,7 +38,29 @@ function fetchMatch(matchId) {
             matchRes.on('end', function() {
                 //parse match for desired information
                 matchJson = JSON.parse(matchData);
-                responsePromise.resolve(matchJson);
+                var newJson = {
+                    region: matchJson.region,
+                    matchType: matchJson.matchType,
+                    matchCreation: matchJson.matchCreation,
+                    timeline: matchJson.timeline,  
+                    matchMode: matchJson.matchMode,
+                    mapId: matchJson.mapId,
+                    season: matchJson.season,
+                    queueType: matchJson.queueType,
+                    matchId: matchJson.matchId,
+                    matchDuration: matchJson.matchDuration,
+                    team1: {},
+                    team2: {},
+                    participants: matchJson.participants //probably slim this down
+                };
+                for(var teamIndex = 0; teamIndex < matchJson.teams.length; teamIndex++){
+                    if(matchJson.teams[teamIndex].teamId == 100){
+                        newJson.team1 = matchJson.teams[teamIndex];
+                    }else if(matchJson.teams[teamIndex].teamId == 200){
+                        newJson.team2 = matchJson.teams[teamIndex];
+                    }
+                }
+                responsePromise.resolve(newJson);
             });
         });
     matchReq.end();

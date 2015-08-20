@@ -8,7 +8,13 @@ block content
     #match-summary-container
         #blue-team-summary
             .team-summary-header
-                | DEFEAT
+                if locals.match.team1.winner
+                    | VICTORY
+                else
+                    | DEFEAT
         #red-team-summary
             .team-summary-header
-                | VICTORY
+                if locals.match.team2.winner
+                    | VICTORY
+                else
+                    | DEFEAT
