@@ -51,13 +51,25 @@ function fetchMatch(matchId) {
                     matchDuration: matchJson.matchDuration,
                     team1: {},
                     team2: {},
-                    participants: matchJson.participants //probably slim this down
+                    participants: {
+                        team1: [],
+                        team2: []
+                    }
                 };
                 for(var teamIndex = 0; teamIndex < matchJson.teams.length; teamIndex++){
                     if(matchJson.teams[teamIndex].teamId == 100){
                         newJson.team1 = matchJson.teams[teamIndex];
                     }else if(matchJson.teams[teamIndex].teamId == 200){
                         newJson.team2 = matchJson.teams[teamIndex];
+                    }
+                }
+                //console.log(matchJson.participantIdentities);
+                for(var playerIndex = 0; playerIndex < matchJson.participants.length; playerIndex++){
+                    console.log( matchJson.participants[playerIndex]);
+                    if(matchJson.participants[playerIndex].teamId == 100){
+                        newJson.participants.team1.push(matchJson.participants[playerIndex]);
+                    }else if(matchJson.participants[playerIndex].teamId == 200){
+                        newJson.participants.team2.push(matchJson.participants[playerIndex]);
                     }
                 }
                 responsePromise.resolve(newJson);

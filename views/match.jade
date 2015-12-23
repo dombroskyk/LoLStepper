@@ -18,3 +18,46 @@ block content
                     | VICTORY
                 else
                     | DEFEAT
+        #champion-info-summary
+            #blue-team.team-container
+                each champion in locals.match.participants.team1
+                    a(href='#')
+                        .champion-container
+                            .champion-ss-container
+                                img(class='match-champ-img', src='/assets/img/Placeholder.jpg', width='64', height='64')
+                                .vertical-summoner-spells
+                                    img(class='summoner-spell1-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='summoner-spell2-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                            .match-sn-kda-container
+                                .match-sn
+                                    | placeholder
+                                .match-kda
+                                    span.blue-text
+                                        | #{champion.stats.kills}
+                                    | &nbsp;/&nbsp;
+                                    span.red-text
+                                        | #{champion.stats.deaths}
+                                    | &nbsp;/&nbsp;
+                                    span.blue-text
+                                        | #{champion.stats.assists}
+                            .item-row1
+                            .item-row2
+                            .trinket
+                            .cs
+                            .gold
+            #red-team.team-container
+                each champion in locals.match.participants.team2
+                    a(href='#')
+                        .champion-container
+                            .champion-ss-container
+                                img(class='match-champ-img', src='/assets/img/Placeholder.jpg', width='64', height='64')
+                                .vertical-summoner-spells
+                                    img(class='summoner-spell1-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='summoner-spell2-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                            .summoner-name
+                            .kda
+                            .item-row1
+                            .item-row2
+                            .trinket
+                            .cs
+                            .gold
