@@ -40,9 +40,21 @@ block content
                                     | &nbsp;/&nbsp;
                                     span.blue-text
                                         | #{champion.stats.assists}
-                            .item-row1
-                            .item-row2
-                            .trinket
+                            .match-items-container
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                            .match-trinket-container
+                                img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                             .cs
                             .gold
             #red-team.team-container
@@ -54,10 +66,32 @@ block content
                                 .vertical-summoner-spells
                                     img(class='summoner-spell1-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                                     img(class='summoner-spell2-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
-                            .summoner-name
-                            .kda
-                            .item-row1
-                            .item-row2
-                            .trinket
+                            .match-sn-kda-container
+                                .match-sn
+                                    | placeholder
+                                .match-kda
+                                    span.blue-text
+                                        | #{champion.stats.kills}
+                                    | &nbsp;/&nbsp;
+                                    span.red-text
+                                        | #{champion.stats.deaths}
+                                    | &nbsp;/&nbsp;
+                                    span.blue-text
+                                        | #{champion.stats.assists}
+                            .match-items-container
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                .match-item-div
+                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                            .match-trinket-container
+                                img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                             .cs
                             .gold
