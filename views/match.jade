@@ -55,8 +55,11 @@ block content
                                     img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                             .match-trinket-container
                                 img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
-                            .cs
-                            .gold
+                            ul.match-cs-gold-container
+                                li.match-cs
+                                    | #{champion.stats.cs}
+                                li.match-gold
+                                    | #{champion.stats.gold}k
             #red-team.team-container
                 each champion in locals.match.participants.team2
                     a(href='#')
@@ -93,5 +96,8 @@ block content
                                     img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                             .match-trinket-container
                                 img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
-                            .cs
-                            .gold
+                            ul.match-cs-gold-container
+                                li.match-cs
+                                    | #{champion.stats.cs}
+                                li.match-gold
+                                    | #{champion.stats.gold}k

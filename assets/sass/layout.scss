@@ -225,13 +225,14 @@ header {
                     border: 1px solid black;
                     color: black;
                     .champion-ss-container {
-                        width: 96px;
+                        width: 101px;
                         height: 64px;
                         display: inline-block;
                         margin: 5px;
                         .match-champ-img {
                             display: inline-block;
                             vertical-align: top;
+                            margin: 0px 5px 0px 0px;
                         }
                         .vertical-summoner-spells {
                             width: 32px;
@@ -245,7 +246,6 @@ header {
                     .match-sn-kda-container {
                         margin: 5px;
                         text-align: center;
-                        width: calc(100%/3);
                         height: 100%;
                         display: inline-block;
                         vertical-align: top;
@@ -261,8 +261,7 @@ header {
                     height: calc(100% - 10px);
                     width: 102px;
                     display: inline-block;
-                    margin-top: 5px;
-                    /*margin-bottom: calc(20% - 34px);*/
+                    margin: 5px 0px 5px 5px;
                     .match-item-div {
                         display: inline-block;
                         width: 32px;
@@ -272,6 +271,20 @@ header {
                 }
                 .match-trinket-container {
                     display: inline-block;
+                    vertical-align: top;
+                    margin: 23px 5px 0px 0px;
+                }
+                .match-cs-gold-container {
+                    display: inline-table;
+                    margin: 5px;
+                    height: calc(100% - 10px);
+                    vertical-align: top;
+                    .match-cs, .match-gold {
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                        display: table-row;
+                    }
                 }
             }
         }
