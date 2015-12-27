@@ -289,6 +289,43 @@ header {
             }
         }
     }
+    #event-summary {
+        width: calc(100% - 22px);
+        border: 1px solid black;
+        margin: 10px;
+        #event-list {
+            height: calc(100% - 2px);
+            width: calc(50% - 12px);
+            border: 1px solid black;
+            margin: 5px;
+            display: inline-block;
+            #event-content {
+                height: $eventContainerHeight * 5;
+            }
+            #event-controls {
+                height: $eventControlHeight - 1;
+                border-top: 1px solid black;
+            }
+        }
+        #map-scoreline-container {
+            display: inline-block;
+            margin: 5px;
+            width: $eventMapDim;
+            vertical-align: top;
+            #event-map {
+                height: $eventMapDim;
+                width: 100%;
+                border: 1px solid black;
+                margin: 0px 0px 32px 0px;
+            }
+            #scoreline {
+                height: $eventControlHeight - 2;
+                width: 100%;
+                border: 1px solid black;
+                margin: 5px 0px 0px 0px;
+            }
+        }
+    }
 }
 
 footer {

@@ -57,7 +57,7 @@ block content
                                 img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                             ul.match-cs-gold-container
                                 li.match-cs
-                                    | #{champion.stats.cs}
+                                    | #{champion.stats.cs} cs
                                 li.match-gold
                                     | #{champion.stats.gold}k
             #red-team.team-container
@@ -98,6 +98,13 @@ block content
                                 img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
                             ul.match-cs-gold-container
                                 li.match-cs
-                                    | #{champion.stats.cs}
+                                    | #{champion.stats.cs} cs
                                 li.match-gold
                                     | #{champion.stats.gold}k
+        #event-summary
+            #event-list
+                #event-content
+                #event-controls
+            #map-scoreline-container
+                #event-map
+                #scoreline
