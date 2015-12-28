@@ -105,6 +105,19 @@ block content
             #event-list
                 #event-content
                 #event-controls
+                    #event-control-imgs
+                        .control-container
+                            img(id='beginning', class='control-img', src='/assets/img/PageImages/beginning.png', width='32', height='32')
+                        .control-container
+                            img(class='control-img', src='/assets/img/PageImages/back_step.png', width='32', height='32')
+                        .control-container
+                            img(id='play-pause', class='control-img', src='/assets/img/PageImages/play.png', width='32', height='32')
+                        .control-container
+                            img(class='control-img', src='/assets/img/PageImages/forward_step.png', width='32', height='32')
+                        .control-container
+                            img(class='control-img', src='/assets/img/PageImages/end.png', width='32', height='32')
             #map-scoreline-container
                 #event-map
+                    //- rescale me
+                    img(id='map-img', src='/assets/img/PageImages/map11.png', width='470', height='470')
                 #scoreline
