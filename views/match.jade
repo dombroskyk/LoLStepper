@@ -1,6 +1,13 @@
 extends layout
 
-//-temporary matchId display
+block externalJs
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' type='text/javascript')
+    //- hack? to be able to use variable in external js
+    script(type='text/javascript').
+        console.log(!{JSON.stringify(locals.match)})
+        var match = !{JSON.stringify(locals.match)};
+    script(src='/assets/js/lolTimelineStepper.js' type='text/javascript')
+
 block pageTitle
     | Match Information
 
@@ -20,7 +27,7 @@ block content
                     | DEFEAT
         #champion-info-summary
             #blue-team.team-container
-                each champion in locals.match.participants.team1
+                each champion in locals.match.team1.participants
                     a(href='#')
                         .champion-container
                             .champion-ss-container
@@ -60,8 +67,9 @@ block content
                                     | #{champion.stats.cs} cs
                                 li.match-gold
                                     | #{champion.stats.gold}k
+                    
             #red-team.team-container
-                each champion in locals.match.participants.team2
+                each champion in locals.match.team2.participants
                     a(href='#')
                         .champion-container
                             .champion-ss-container
@@ -109,13 +117,13 @@ block content
                         .control-container
                             img(id='beginning', class='control-img', src='/assets/img/PageImages/beginning.png', width='32', height='32')
                         .control-container
-                            img(class='control-img', src='/assets/img/PageImages/back_step.png', width='32', height='32')
+                            img(id='step-back', class='control-img', src='/assets/img/PageImages/back_step.png', width='32', height='32')
                         .control-container
                             img(id='play-pause', class='control-img', src='/assets/img/PageImages/play.png', width='32', height='32')
                         .control-container
-                            img(class='control-img', src='/assets/img/PageImages/forward_step.png', width='32', height='32')
+                            img(id='step-forward', class='control-img', src='/assets/img/PageImages/forward_step.png', width='32', height='32')
                         .control-container
-                            img(class='control-img', src='/assets/img/PageImages/end.png', width='32', height='32')
+                            img(id='end', class='control-img', src='/assets/img/PageImages/end.png', width='32', height='32')
             #map-scoreline-container
                 #event-map
                     //- rescale me

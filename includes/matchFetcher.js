@@ -3,7 +3,8 @@
 var mongoClient = require('mongodb').MongoClient,
     Q = require('q'),
     https = require('https'),
-    config = require('../config');
+    config = require('../config'),
+    timelineObjects = require('./timelineObjects');
 
 var dbPromise = Q.defer();
 
@@ -50,32 +51,35 @@ function fetchMatch(matchId) {
                     matchId: matchJson.matchId,
                     matchDuration: matchJson.matchDuration,
                     team1: {},
-                    team2: {},
-                    participants: {
-                        team1: [],
-                        team2: []
-                    }
+                    team2: {}
                 };
                 for(var teamIndex = 0; teamIndex < matchJson.teams.length; teamIndex++){
+                    console.log(matchJson.teams[teamIndex]);
                     if(matchJson.teams[teamIndex].teamId == 100){
                         newJson.team1 = matchJson.teams[teamIndex];
+                        newJson.team1.participants = {};
                     }else if(matchJson.teams[teamIndex].teamId == 200){
                         newJson.team2 = matchJson.teams[teamIndex];
+                        newJson.team2.participants = {};
                     }
                 }
                 //console.log(matchJson.participantIdentities);
                 for(var playerIndex = 0; playerIndex < matchJson.participants.length; playerIndex++){
-                    //console.log( matchJson.timeline);
+                    //console.log( matchJson.participants[playerIndex]);
                     if(matchJson.participants[playerIndex].teamId == 100){
                         matchJson.participants[playerIndex].stats.cs = matchJson.participants[playerIndex].stats.minionsKilled + matchJson.participants[playerIndex].stats.neutralMinionsKilled;
                         matchJson.participants[playerIndex].stats.gold = Math.round(matchJson.participants[playerIndex].stats.goldEarned/100)/10
-                        newJson.participants.team1.push(matchJson.participants[playerIndex]);
+                        newJson.team1.participants[matchJson.participants[playerIndex].participantId] = matchJson.participants[playerIndex];
                     }else if(matchJson.participants[playerIndex].teamId == 200){
                         matchJson.participants[playerIndex].stats.cs = matchJson.participants[playerIndex].stats.minionsKilled + matchJson.participants[playerIndex].stats.neutralMinionsKilled;
-                        matchJson.participants[playerIndex].stats.gold = Math.round(matchJson.participants[playerIndex].stats.goldEarned/100)/10
-                        newJson.participants.team2.push(matchJson.participants[playerIndex]);
+                        matchJson.participants[playerIndex].stats.gold = Math.round(matchJson.participants[playerIndex].stats.goldEarned/100)/10;
+                        newJson.team2.participants[matchJson.participants[playerIndex].participantId] = matchJson.participants[playerIndex];
                     }
                 }
+                //console.log(newJson.team1.participants['1'].stats);
+                
+                newJson.timeline = timelineObjects(matchJson.timeline);
+                
                 responsePromise.resolve(newJson);
             });
         });

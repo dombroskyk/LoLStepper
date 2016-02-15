@@ -301,6 +301,9 @@ header {
             display: inline-block;
             #event-content {
                 height: $eventContainerHeight * 5;
+                .timelineEvent {
+                    height: $eventContainerHeight;
+                }
             }
             #event-controls {
                 height: $eventControlHeight - 1;

@@ -10,7 +10,14 @@ cache_db/*
 
 #GENERATED ASSETS#
 public/assets/*
+!public/assets/img
 !public/assets/fonts
+!public/assets/img/Placeholder.jpg
+public/assets/img/ChampionImages/*
+public/assets/img/ItemImages/*
+public/assets/img/MasteryImages/*
+public/assets/img/ProfileImages/*
+!public/assets/img/PageImages
 
 #PERSONAL CONFIG FILE#
 config.json
