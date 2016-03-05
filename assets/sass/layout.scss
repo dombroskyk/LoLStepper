@@ -303,6 +303,7 @@ header {
                 height: $eventContainerHeight * 5;
                 .timelineEvent {
                     height: $eventContainerHeight;
+                    background-color: red; /*fix this later, team based*/
                 }
             }
             #event-controls {

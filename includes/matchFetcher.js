@@ -54,7 +54,7 @@ function fetchMatch(matchId) {
                     team2: {}
                 };
                 for(var teamIndex = 0; teamIndex < matchJson.teams.length; teamIndex++){
-                    console.log(matchJson.teams[teamIndex]);
+                    //console.log(matchJson.teams[teamIndex]);
                     if(matchJson.teams[teamIndex].teamId == 100){
                         newJson.team1 = matchJson.teams[teamIndex];
                         newJson.team1.participants = {};
@@ -65,7 +65,7 @@ function fetchMatch(matchId) {
                 }
                 //console.log(matchJson.participantIdentities);
                 for(var playerIndex = 0; playerIndex < matchJson.participants.length; playerIndex++){
-                    //console.log( matchJson.participants[playerIndex]);
+                    console.log( matchJson.participants[playerIndex]);
                     if(matchJson.participants[playerIndex].teamId == 100){
                         matchJson.participants[playerIndex].stats.cs = matchJson.participants[playerIndex].stats.minionsKilled + matchJson.participants[playerIndex].stats.neutralMinionsKilled;
                         matchJson.participants[playerIndex].stats.gold = Math.round(matchJson.participants[playerIndex].stats.goldEarned/100)/10

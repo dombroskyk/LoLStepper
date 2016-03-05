@@ -1,5 +1,9 @@
 extends layout
 
+block externalCss
+    link(rel='stylesheet', href='/assets/css/ss.css')
+    link(rel='stylesheet', href='/assets/css/champion.css')
+
 block pageTitle
     | #{locals.summonerName}'s Match History
 

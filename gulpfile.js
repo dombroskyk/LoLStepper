@@ -7,6 +7,15 @@ gulp.task('sass', function () {
     gulp.src('./assets/sass/main.scss')
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(gulp.dest('./public/assets/css'));
+    gulp.src('./assets/sass/champion.scss')
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(gulp.dest('./public/assets/css'));
+    gulp.src('./assets/sass/item.scss')
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(gulp.dest('./public/assets/css'));
+    gulp.src('./assets/sass/ss.scss')
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(gulp.dest('./public/assets/css'));
 });
 
 gulp.task('sass:watch', function () {

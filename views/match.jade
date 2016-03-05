@@ -1,5 +1,10 @@
 extends layout
 
+block externalCss
+    link(rel='stylesheet', href='/assets/css/champion.css')
+    link(rel='stylesheet', href='/assets/css/item.css')
+    link(rel='stylesheet', href='/assets/css/ss.css')
+
 block externalJs
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' type='text/javascript')
     //- hack? to be able to use variable in external js
@@ -27,88 +32,88 @@ block content
                     | DEFEAT
         #champion-info-summary
             #blue-team.team-container
-                each champion in locals.match.team1.participants
+                each participant in locals.match.team1.participants
                     a(href='#')
                         .champion-container
                             .champion-ss-container
-                                img(class='match-champ-img', src='/assets/img/Placeholder.jpg', width='64', height='64')
+                                img(class='match-champ-img champ-#{participant.championId}', src='/assets/img/t64.png', width='64', height='64')
                                 .vertical-summoner-spells
-                                    img(class='summoner-spell1-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
-                                    img(class='summoner-spell2-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='summoner-spell1-img ss ss-#{participant.spell1Id}', src='/assets/img/t64.png', width='32', height='32')
+                                    img(class='summoner-spell2-img ss ss-#{participant.spell2Id}', src='/assets/img/t64.png', width='32', height='32')
                             .match-sn-kda-container
                                 .match-sn
                                     | placeholder
                                 .match-kda
                                     span.blue-text
-                                        | #{champion.stats.kills}
+                                        | #{participant.stats.kills}
                                     | &nbsp;/&nbsp;
                                     span.red-text
-                                        | #{champion.stats.deaths}
+                                        | #{participant.stats.deaths}
                                     | &nbsp;/&nbsp;
                                     span.blue-text
-                                        | #{champion.stats.assists}
+                                        | #{participant.stats.assists}
                             .match-items-container
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item0}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item1}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item2}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item3}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item4}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item5}', src='/assets/img/t64.png', width='32', height='32')
                             .match-trinket-container
-                                img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                img(class='match-trinket-img item item-#{participant.stats.item6}', src='/assets/img/t64.png', width='32', height='32')
                             ul.match-cs-gold-container
                                 li.match-cs
-                                    | #{champion.stats.cs} cs
+                                    | #{participant.stats.cs} cs
                                 li.match-gold
-                                    | #{champion.stats.gold}k
+                                    | #{participant.stats.gold}k
                     
             #red-team.team-container
-                each champion in locals.match.team2.participants
+                each participant in locals.match.team2.participants
                     a(href='#')
                         .champion-container
                             .champion-ss-container
-                                img(class='match-champ-img', src='/assets/img/Placeholder.jpg', width='64', height='64')
+                                img(class='match-champ-img champ-#{participant.championId}', src='/assets/img/t64.png', width='64', height='64')
                                 .vertical-summoner-spells
-                                    img(class='summoner-spell1-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
-                                    img(class='summoner-spell2-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='summoner-spell1-img ss ss-#{participant.spell1Id}', src='/assets/img/t64.png', width='32', height='32')
+                                    img(class='summoner-spell2-img ss ss-#{participant.spell2Id}', src='/assets/img/t64.png', width='32', height='32')
                             .match-sn-kda-container
                                 .match-sn
                                     | placeholder
                                 .match-kda
                                     span.blue-text
-                                        | #{champion.stats.kills}
+                                        | #{participant.stats.kills}
                                     | &nbsp;/&nbsp;
                                     span.red-text
-                                        | #{champion.stats.deaths}
+                                        | #{participant.stats.deaths}
                                     | &nbsp;/&nbsp;
                                     span.blue-text
-                                        | #{champion.stats.assists}
+                                        | #{participant.stats.assists}
                             .match-items-container
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item0}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item1}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item2}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item3}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item4}', src='/assets/img/t64.png', width='32', height='32')
                                 .match-item-div
-                                    img(class='match-item-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                    img(class='match-item-img item item-#{participant.stats.item5}', src='/assets/img/t64.png', width='32', height='32')
                             .match-trinket-container
-                                img(class='match-trinket-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                img(class='match-trinket-img item item-#{participant.stats.item6}', src='/assets/img/t64.png', width='32', height='32')
                             ul.match-cs-gold-container
                                 li.match-cs
-                                    | #{champion.stats.cs} cs
+                                    | #{participant.stats.cs} cs
                                 li.match-gold
-                                    | #{champion.stats.gold}k
+                                    | #{participant.stats.gold}k
         #event-summary
             #event-list
                 #event-content

@@ -9,10 +9,10 @@
                 .player-team-container
                     .player-team-imgs
                         .player-imgs
-                            img(class='player-champ-img', src='/assets/img/Placeholder.jpg', width='64', height='64')
+                            img(class='player-champ-img champ-#{match.championId}', width='64', height='64')
                             .vertical-summoner-spells
-                                img(class='summoner-spell1-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
-                                img(class='summoner-spell2-img', src='/assets/img/Placeholder.jpg', width='32', height='32')
+                                img(class='summoner-spell1-img ss-#{match.spell1Id}', width='32', height='32')
+                                img(class='summoner-spell2-img ss-#{match.spell2Id}', width='32', height='32')
                         each teamChamp in match.otherPlayers.playerTeam
                             img(class='nonplayer-champ-img', src='/assets/img/Placeholder.jpg', width='48', height='48')
                     .player-stats-container
@@ -31,4 +31,4 @@
                             | #{match.matchCreation}
                 .enemy-team-container
                     each enemyChamp in match.otherPlayers.enemyTeam
-                        img(class='nonplayer-champ-img', src='/assets/img/Placeholder.jpg', width='48', height='48')
+                        img(class='nonplayer-champ-img', src='/assets/img/t64.png', width='48', height='48')
