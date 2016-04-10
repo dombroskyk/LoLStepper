@@ -301,9 +301,38 @@ header {
             display: inline-block;
             #event-content {
                 height: $eventContainerHeight * 5;
-                .timelineEvent {
+                overflow-y: scroll;
+                overflow-x: hidden;
+                /*https://css-tricks.com/examples/WebKitScrollbars/*/
+                .timeline-event {
                     height: $eventContainerHeight;
-                    background-color: red; /*fix this later, team based*/
+                    border-bottom: 1px solid black;
+                    .timeline-timestamp {
+                        height: 1em;
+                        width: 100%;
+                        padding-left: 5px;
+                    }
+                    .vert-center-48 {
+                        margin-bottom: $eventContainerHeight/2 - 42;
+                    }
+                    .vert-center-64 {
+                        margin-top: $eventContainerHeight/2 - 48;
+                    }
+                    .lone-left-64 {
+                        margin-left: calc(50% - 98px);
+                    }
+                    .lone-left-48 {
+                        margin-left: calc(50% - 82px);
+                    }
+                    img:not(first-child) {
+                        margin-left: 10px;
+                    }
+                }
+                .team-100-event {
+                    background-color: $lightBlue;
+                }
+                .team-200-event {
+                    background-color: $lightRed;
                 }
             }
             #event-controls {

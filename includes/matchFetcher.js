@@ -39,6 +39,7 @@ function fetchMatch(matchId) {
             matchRes.on('end', function() {
                 //parse match for desired information
                 matchJson = JSON.parse(matchData);
+                console.log(matchJson);
                 var newJson = {
                     region: matchJson.region,
                     matchType: matchJson.matchType,
@@ -70,15 +71,17 @@ function fetchMatch(matchId) {
                         matchJson.participants[playerIndex].stats.cs = matchJson.participants[playerIndex].stats.minionsKilled + matchJson.participants[playerIndex].stats.neutralMinionsKilled;
                         matchJson.participants[playerIndex].stats.gold = Math.round(matchJson.participants[playerIndex].stats.goldEarned/100)/10
                         newJson.team1.participants[matchJson.participants[playerIndex].participantId] = matchJson.participants[playerIndex];
+                        //newJson["participantId"+matchJson.participants[playerIndex].participantId] = 100
                     }else if(matchJson.participants[playerIndex].teamId == 200){
                         matchJson.participants[playerIndex].stats.cs = matchJson.participants[playerIndex].stats.minionsKilled + matchJson.participants[playerIndex].stats.neutralMinionsKilled;
                         matchJson.participants[playerIndex].stats.gold = Math.round(matchJson.participants[playerIndex].stats.goldEarned/100)/10;
                         newJson.team2.participants[matchJson.participants[playerIndex].participantId] = matchJson.participants[playerIndex];
+                        //newJson["participantId"+matchJson.participants[playerIndex].participantId] = 200
                     }
                 }
-                //console.log(newJson.team1.participants['1'].stats);
+                newJson.timeline = matchJson.timeline;
                 
-                newJson.timeline = timelineObjects(matchJson.timeline);
+                newJson.timeline = timelineObjects(newJson);
                 
                 responsePromise.resolve(newJson);
             });
