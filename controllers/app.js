@@ -53,7 +53,7 @@ module.exports = {
         matchFetcher(matchId).then(function (match) {
             res.render('match', { matchId: matchId, match: match });
         }, function (err) {
-            console.log(err);
+            console.log("after error: " + err);
             res.end();
         });
     }

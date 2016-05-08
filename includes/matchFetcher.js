@@ -8,7 +8,7 @@ var mongoClient = require('mongodb').MongoClient,
 
 var dbPromise = Q.defer();
 
-var mongoUrl = 'mongodb://' + config.MONGODB.MONGO_HOST + ':' + config.MONGODB.PORT + '/lolstepper';
+var mongoUrl = 'mongodb://' + config.MONGODB.MONGO_HOST + ':' + config.MONGODB.MONGO_PORT + '/lolstepper';
 mongoClient.connect(mongoUrl, function (err, db) {
     if (err) {
         dbPromise.reject(err);
@@ -39,7 +39,7 @@ function fetchMatch(matchId) {
             matchRes.on('end', function() {
                 //parse match for desired information
                 matchJson = JSON.parse(matchData);
-                console.log(matchJson);
+                //console.log(matchJson);
                 var newJson = {
                     region: matchJson.region,
                     matchType: matchJson.matchType,
@@ -79,9 +79,10 @@ function fetchMatch(matchId) {
                         //newJson["participantId"+matchJson.participants[playerIndex].participantId] = 200
                     }
                 }
+                //TODO make this pretty
                 newJson.timeline = matchJson.timeline;
                 
-                newJson.timeline = timelineObjects(newJson);
+                //newJson.timeline = timelineObjects(newJson);
                 
                 responsePromise.resolve(newJson);
             });

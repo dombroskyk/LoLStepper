@@ -23,22 +23,27 @@ module.exports = function (matchJson){
                     events.push(new BuildingKillEvent(event));
                     break;
                 case 'CHAMPION_KILL':
-                    if( event.killerId in matchJson.team1.participants ){
+                    //console.log(event)
+                    if(event.killerId in matchJson.team1.participants){
                         event.teamId = 100;
                         event.killerChampionId = matchJson.team1.participants[event.killerId].championId;
                         event.victimChampionId = matchJson.team2.participants[event.victimId].championId;
                         event.assistingChampionIds = [];
-                        for(var participantIndex = 0; participantIndex < event.assistingParticipantIds.length; participantIndex++){
-                            event.assistingChampionIds.push(matchJson.team1.participants[event.assistingParticipantIds[participantIndex]]);
-                        } 
+                        if("assistingParticipantIds" in event){
+                            for(var participantIndex = 0; participantIndex < event.assistingParticipantIds.length; participantIndex++){
+                                event.assistingChampionIds.push(matchJson.team1.participants[event.assistingParticipantIds[participantIndex]].championId);
+                            }
+                        }
                     }else{
                         event.teamId = 200;
                         event.killerChampionId = matchJson.team2.participants[event.killerId].championId;
                         event.victimChampionId = matchJson.team1.participants[event.victimId].championId;
                         event.assistingChampionIds = [];
-                        for(var participantIndex = 0; participantIndex < event.assistingParticipantIds.length; participantIndex++){
-                            event.assistingChampionIds.push(matchJson.team2.participants[event.assistingParticipantIds[participantIndex]]);
-                        } 
+                        if("assistingParticipantIds" in event){
+                            for(var participantIndex = 0; participantIndex < event.assistingParticipantIds.length; participantIndex++){
+                                event.assistingChampionIds.push(matchJson.team2.participants[event.assistingParticipantIds[participantIndex]].championId);
+                            }
+                        }
                     }
                     events.push(new ChampionKillEvent(event));
                     break;
@@ -131,23 +136,58 @@ function ChampionKillEvent (event){
     this.killerChampionId = event.killerChampionId;
     this.assistingParticipantIds = event.assistingParticipantIds;
     var assistingHtml = "";
-    if(event.assistingChampionIds.length > 0){
-        for(var assistingIndex = 0; assistingIndex < event.assistingChampionIds.length; assistingIndex++){
-            assistingHtml += "<img class='champ48-" + event.assistingChampionIds[assistingIndex] + " vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
+    if("assistingChampionIds" in event){
+        //console.log(event);
+        var assistingChampionDivWidth = 0
+        switch(event.assistingChampionIds.length){
+            case 1:
+                assistingChampionDivWidth = 1;
+            case 2:
+            case 3:
+            case 4:
+                assistingChampionDivWidth = 2;
+                break;
+            case 5:
+                assistingChampionDivWidth = 3;
+                break;
+            default:
+                assistingChampionDivWidth = 0;
+                break;
         }
+        assistingHtml += "<div class='assistChampsDiv assistChamps-"+ assistingChampionDivWidth + "'>";
+        for(var assistingIndex = 0; assistingIndex < event.assistingChampionIds.length; assistingIndex++){
+            assistingHtml += "<img class='champ32-" + event.assistingChampionIds[assistingIndex] + " assist-champ' src='/assets/img/t1.png' width='32' height='32'/>";
+        }
+        assistingHtml += "</div>";
     }
+    
     this.stepperHTML = "<div class='championKillEvent timeline-event team-" + event.teamId + "-event' id='ChampionKillEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
     if(event.teamId == 100){
-        //this.stepperHTML += assistingHtml;
-        this.stepperHTML += "<img class='champ64-" + event.killerChampionId + " lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
+        this.stepperHTML += assistingHtml;
+        this.stepperHTML += "<div class='tl-center-images'>"
+        
+        this.stepperHTML += "<img class='champ64-" + event.killerChampionId + " ";
+        if(!("assistingChampionIds" in event)){
+            this.stepperHTML = "lone-left-64 "
+        }
+        this.stepperHTML += "vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
+        
         this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/PageImages/kill100.png' width='48' height='48'/>";
-        this.stepperHTML += "<img class='champ64-" + event.victimChampionId + " lone-right-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
+        this.stepperHTML += "<img class='champ64-" + event.victimChampionId + " vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
+        this.stepperHTML += "</div>"
     }else if(event.teamId == 200){
+        this.stepperHTML += "<div class='tl-center-images'>"
         this.stepperHTML += "<img class='champ64-" + event.victimChampionId + " lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
         this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/PageImages/kill200.png' width='48' height='48'/>";
-        this.stepperHTML += "<img class='champ64-" + event.killerChampionId + " lone-right-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
-        //this.stepperHTML += assistingHtml;
+        
+        this.stepperHTML += "<img class='champ64-" + event.killerChampionId + " ";
+        if(!("assistingChampionIds" in event)){
+            this.stepperHTML = "lone-left-64 "
+        }
+        this.stepperHTML += "vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
+        this.stepperHTML += "</div>"
+        this.stepperHTML += assistingHtml;
     }
     this.stepperHTML += "</div>";
 }
@@ -163,6 +203,8 @@ function EliteMonsterKillEvent (event){
     this.monsterType = event.monsterType;
     this.stepperHTML = "<div class='eliteMonsterKillEvent timeline-event team-" + event.teamId + "-event' id='EliteMonsterKillEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    
+    this.stepperHTML += "<div class='tl-center-images'>"
     if(event.teamId == 100){
         //killer
         this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
@@ -174,7 +216,7 @@ function EliteMonsterKillEvent (event){
         this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/kill200.png' width='48' height='48'/>";
         this.stepperHTML += "<img class='champ64-4 lone-right-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     }
-    this.stepperHTML += "</div>";
+    this.stepperHTML += "</div></div>";
 }
 
 // EliteMonsterKillEvent.prototype.getStepperHTML = function (){
@@ -187,10 +229,12 @@ function ItemPurchasedEvent (event){
     this.itemId = event.itemId;
     this.stepperHTML = "<div class='itemPurchasedEvent timeline-event team-" + event.teamId + "-event' id='ItemPurchasedEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    
+    this.stepperHTML += "<div class='tl-center-images'>"
     this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/Placeholder.jpg' width='48' height='48'/>";
     this.stepperHTML += "<img class='item-" + event.itemId + " lone-right-48 vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
-    this.stepperHTML += "</div>"; 
+    this.stepperHTML += "</div></div>"; 
 }
 
 // ItemPurchasedEvent.prototype.getStepperHTML = function (){
@@ -203,10 +247,12 @@ function ItemSoldEvent (event){
     this.itemId = event.itemId;
     this.stepperHTML = "<div class='itemSoldEvent timeline-event team-" + event.teamId + "-event' id='ItemSoldEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    console.log("hello")
+    this.stepperHTML += "<div class='tl-center-images'>"
     this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/Placeholder.jpg' width='48' height='48'/>";
     this.stepperHTML += "<img class='item-" + event.itemId + " lone-right-48 vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
-    this.stepperHTML += "</div>"; 
+    this.stepperHTML += "</div></div>"; 
 }
 
 // ItemSoldEvent.prototype.getStepperHTML = function (){
@@ -219,10 +265,12 @@ function ItemDestroyedEvent (event){
     this.itemId = event.itemId;
     this.stepperHTML = "<div class='itemDestroyedEvent timeline-event team-" + event.teamId + "-event' id='ItemDestroyedEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    
+    this.stepperHTML += "<div class='tl-center-images'>"
     this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     this.stepperHTML += "<img class='tl-center-img v    ert-center-48' src='/assets/img/Placeholder.jpg' width='48' height='48'/>";
     this.stepperHTML += "<img class='item-" + event.itemId + " lone-right-48 vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
-    this.stepperHTML += "</div>"; 
+    this.stepperHTML += "</div></div>"; 
 }
 
 // ItemDestroyedEvent.prototype.getStepperHTML = function (){
@@ -235,10 +283,11 @@ function ItemUndoEvent (event){
     this.itemId = event.itemBefore;
     this.stepperHTML = "<div class='itemUndoEvent timeline-event team-" + event.teamId + "-event' id='ItemUndoEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    this.stepperHTML += "<div class='tl-center-images'>"
     this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/Placeholder.jpg' width='48' height='48'/>";
     this.stepperHTML += "<img class='item-" + event.itemBefore + " lone-right-48 vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
-    this.stepperHTML += "</div>"; 
+    this.stepperHTML += "</div></div>"; 
 }
 
 // ItemUndoEvent.prototype.getStepperHTML = function (){
@@ -251,10 +300,11 @@ function WardKillEvent (event){
     this.wardType = event.wardType;
     this.stepperHTML = "<div class='wardKillEvent timeline-event team-" + event.teamId + "-event' id='WardKillEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    this.stepperHTML += "<div class='tl-center-images'>"
     this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/Placeholder.jpg' width='48' height='48'/>";
     this.stepperHTML += "<img class='item-3340 lone-right-48 vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
-    this.stepperHTML += "</div>"; 
+    this.stepperHTML += "</div></div>"; 
 }
 
 // WardKillEvent.prototype.getStepperHTML = function (){
@@ -267,10 +317,11 @@ function WardPlacedEvent (event){
     this.wardType = event.wardType;
     this.stepperHTML = "<div class='wardPlacedEvent timeline-event team-" + event.teamId + "-event' id='WardPlacedEvent_"+ this.timestamp +"'>";
     this.stepperHTML += "<div class='timeline-timestamp'>" + event.minutes + ":" + event.seconds + "</div>";
+    this.stepperHTML += "<div class='tl-center-images'>"
     this.stepperHTML += "<img class='champ64-4 lone-left-64 vert-center-64' src='/assets/img/t1.png' width='64' height='64'/>";
     this.stepperHTML += "<img class='tl-center-img vert-center-48' src='/assets/img/Placeholder.jpg' width='48' height='48'/>";
     this.stepperHTML += "<img class='item-3340 lone-right-48 vert-center-48' src='/assets/img/t1.png' width='48' height='48'/>";
-    this.stepperHTML += "</div>"; 
+    this.stepperHTML += "</div></div>"; 
 }
 
 // WardPlacedEvent.prototype.getStepperHTML = function (){

@@ -120,15 +120,17 @@ block content
                 #event-controls
                     #event-control-imgs
                         .control-container
-                            img(id='beginning', class='control-img', src='/assets/img/PageImages/beginning.png', width='32', height='32')
+                            i(id='fast-backward', class="fa fa-fast-backward fa-2x", aria-hidden="true")
+                            //-img(id='beginning', class='control-img', src='/assets/img/PageImages/beginning.png', width='32', height='32')
                         .control-container
-                            img(id='step-back', class='control-img', src='/assets/img/PageImages/back_step.png', width='32', height='32')
+                            i(id='step-backward', class="fa fa-step-backward fa-2x", aria-hidden="true")
                         .control-container
-                            img(id='play-pause', class='control-img', src='/assets/img/PageImages/play.png', width='32', height='32')
+                            i(id='play-pause', class="fa fa-play-circle-o fa-2x", aria-hidden="true")
+                            //- img(id='play-pause', class='control-img', src='/assets/img/PageImages/play.png', width='32', height='32')
                         .control-container
-                            img(id='step-forward', class='control-img', src='/assets/img/PageImages/forward_step.png', width='32', height='32')
+                            i(id='step-forward', class="fa fa-step-forward fa-2x", aria-hidden="true")
                         .control-container
-                            img(id='end', class='control-img', src='/assets/img/PageImages/end.png', width='32', height='32')
+                            i(id='fast-forward', class="fa fa-fast-forward fa-2x", aria-hidden="true")
             #map-scoreline-container
                 //- use jquery ui tabs
                 #event-map

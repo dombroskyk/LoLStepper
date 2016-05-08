@@ -312,20 +312,69 @@ header {
                         width: 100%;
                         padding-left: 5px;
                     }
+                    .kill-event-vert-align > div {
+                        vertical-align: top;
+                    }
+                    .assistChampsDiv {
+                        display: inline-block;
+                        .assist-champ {
+                            margin-left: 0px;
+                            margin-right: 5px;
+                        }
+                    }
+                    .assistChamps-width-0-left {
+                        /*something went wrong*/
+                        display: none;
+                    }
+                    .assistChamps-width-0-right {
+                        /*something went wrong*/
+                        display: none;
+                    }
+                    .assistChamps-width-1-left {
+                        width: 37px;
+                        margin-left: 85px;
+                    }
+                    .assistChamps-width-1-right {
+                        width: 37px;
+                    }
+                    .assistChamps-width-2-left {
+                        width: 74px;
+                    }
+                    .assistChamps-width-2-right {
+                        width: 74px;
+                    }
+                    .assistChamps-width-3-left {
+                        width: 111px;
+                    }
+                    .assistChamps-width-3-right {
+                        width: 111px;
+                    }
+                    .assistChamps-height-1 {
+                        height: 32px;
+                        margin-top: 18px;
+                    }
+                    .assistChamps-height-2 {
+                        height: 69px;
+                        margin-top: 8px;
+                    }
+                    .no-left-assist-div {
+                        margin-left: 122px;
+                    }
                     .vert-center-48 {
-                        margin-bottom: $eventContainerHeight/2 - 42;
+                        margin-top: 8px;
                     }
-                    .vert-center-64 {
-                        margin-top: $eventContainerHeight/2 - 48;
-                    }
-                    .lone-left-64 {
-                        margin-left: calc(50% - 98px);
-                    }
-                    .lone-left-48 {
-                        margin-left: calc(50% - 82px);
-                    }
-                    img:not(first-child) {
-                        margin-left: 10px;
+                    .tl-center-images{
+                        display: inline-block;
+                        height: 64px;
+                        margin-top: 4px;
+                        img {
+                            vertical-align: top;
+                            margin-left: 5px;
+                            margin-right: 5px;
+                        }
+                        /*img:not(:first-child) {
+                            margin-left: 10px;
+                        }*/
                     }
                 }
                 .team-100-event {
@@ -342,13 +391,10 @@ header {
                     height: 32px;
                     width: 320px;
                     margin-top: $eventControlHeight/2 - 17;
-                    margin-right: 73px;
-                    margin-bottom: $eventControlHeight/2 - 16;
                     margin-left: 73px;
                     .control-container {
                         display: inline-block;
-                        margin-right: 16px;
-                        margin-left: 16px;
+                        margin-left: 32px;
                     }
                 }
             }
