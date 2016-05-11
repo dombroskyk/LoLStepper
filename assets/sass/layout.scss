@@ -317,6 +317,14 @@ header {
                     }
                     .assistChampsDiv {
                         display: inline-block;
+                    }
+                    .assistChamps-left {
+                        .assist-champ {
+                            margin-left: 5px;
+                            margin-right: 0px;
+                        }
+                    }
+                    .assistChamps-right {
                         .assist-champ {
                             margin-left: 0px;
                             margin-right: 5px;
@@ -339,12 +347,14 @@ header {
                     }
                     .assistChamps-width-2-left {
                         width: 74px;
+                        margin-left: 48px;
                     }
                     .assistChamps-width-2-right {
                         width: 74px;
                     }
                     .assistChamps-width-3-left {
                         width: 111px;
+                        margin-left: 11px;
                     }
                     .assistChamps-width-3-right {
                         width: 111px;
